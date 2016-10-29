@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Created by lethanhtan on 10/29/16.
  */
 @Entity
-@Table(name = "emotion_content", schema = "mydb")
+@Table(name = "emotion_content", schema = "hackathon")
 public class EmotionContentEntity {
 
     @Id

@@ -13,7 +13,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "emotion", schema = "mydb")
+@Table(name = "emotion", schema = "hackathon")
 public class EmotionCustomerEntity implements Serializable {
 
     @Id
