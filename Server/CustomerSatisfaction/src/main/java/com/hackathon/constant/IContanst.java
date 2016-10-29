@@ -1,4 +1,4 @@
-package com.hackathon.common;
+package com.hackathon.constant;
 
 import com.hackathon._config.AppConfigKeys;
 

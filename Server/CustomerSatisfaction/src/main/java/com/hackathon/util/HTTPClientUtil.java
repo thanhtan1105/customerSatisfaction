@@ -2,7 +2,7 @@ package com.hackathon.util;
 
 import com.hackathon._config.AppConfigKeys;
 import com.hackathon.common.BaseResponse;
-import com.hackathon.common.IContanst;
+import com.hackathon.constant.IContanst;
 import com.hackathon.modelMCS.ResponseErrorWrap;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
