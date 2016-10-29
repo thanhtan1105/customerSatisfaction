@@ -31,7 +31,7 @@ public interface I_URI {
      * Department
      */
     String API_DEPARTMENT = "/api/department";
-    String API_DEPARTMENT_TRAINING = "/training";
+    String API_DEPARTMENT_TRAINING = "/createTraining";
     String API_DEPARTMENT_EXIST = "/exist_code";
 
     /**

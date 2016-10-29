@@ -2,6 +2,7 @@ package com.hackathon.repository;
 
 import com.hackathon.entity.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Integer>{
+    @Query("SELECT a FROM CustomerEntity a WHERE a.personCode = ?1")
+    CustomerEntity findByUsercode(String code);
 }
