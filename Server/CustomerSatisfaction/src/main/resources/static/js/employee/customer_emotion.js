@@ -66,6 +66,7 @@ function worker_get_emotion() {
             if (response.success) {
                 var data = response.data,
                     messages = data.messages,
+                    histories = data.historyModels,
                     customer_emotion_msg = messages.message,
                     suggestions = messages.sugguest,
                     age_predict = messages.predict,
@@ -76,8 +77,10 @@ function worker_get_emotion() {
                     $font_gender = $('#font-gender'),
                     $customer_emotion_msg = $('#customer-emotion-message'),
                     $suggestion_behavior_msg = $('#suggestion-behavior-message'),
+                    $history_customer_emotion = $('#history-customer-emotion'),
                     ul_content_customer_emotion = '',
-                    ul_content_suggestion_behavior = '';
+                    ul_content_suggestion_behavior = '',
+                    ul_content_history_emotion = '';
 
                 //hide div loader
                 event_hide('#div-loader');
@@ -158,6 +161,25 @@ function worker_get_emotion() {
                     ul_content_suggestion_behavior += '<li>N/A</li>';
                 }
                 $suggestion_behavior_msg.html(ul_content_suggestion_behavior);
+
+                //set history customer emotion
+                if (histories != null && histories.length > 0) {
+                    ul_content_history_emotion += '<li class="time-label">' +
+                        '<span class="bg-blue-gradient">Lịch sử</span></li>';
+                    for (var i = 0; i < histories.length; i++) {
+                        ul_content_history_emotion += '<li>' +
+                            '<i class="fa fa-heartbeat bg-yellow"></i>' +
+                            '<div class="timeline-item">' +
+                            '<h3 class="timeline-header">' +
+                            '<span class="text-primary text-bold">' + formatDate(histories[i].date) + '</span></h3>' +
+                            '<div class="timeline-body">' +
+                            'Ban đầu<ul><li>' + histories[i].emotionBefore + '</li></ul>' +
+                            'Kết thúc<ul><li>' + histories[i].emotionEnd + '</li></ul>' +
+                            '</div>' +
+                            '</div>' +
+                            '</li>';
+                    }
+                }
 
                 //stop request: get first emotion
                 clearTimeout(timer_get_emotion);
