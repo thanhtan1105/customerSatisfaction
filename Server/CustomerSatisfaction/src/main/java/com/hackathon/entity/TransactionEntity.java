@@ -35,7 +35,7 @@ public class TransactionEntity {
     private Double grade = 0d;
 
     @Basic
-    @Column(name = "customer_code", nullable = false)
+    @Column(name = "customer_code")
     private String CustomerCode;
 
 

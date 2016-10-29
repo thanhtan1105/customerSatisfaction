@@ -13,6 +13,7 @@ import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +25,7 @@ import java.util.Map;
 /**
  * Created by HienTQSE60896 on 10/29/2016.
  */
+@Service
 public class EmotionServiceMCSImpl {
 
     private Logger logger = LogManager.getLogger(EmotionServiceMCSImpl.class);
