@@ -1,0 +1,100 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<!-- jQuery 2.1.4 -->
+<script th:src="@{/libs/plugins/jQuery/jQuery-2.1.4.min.js}"></script>
+<!-- Bootstrap 3.3.5 -->
+<script th:src="@{/libs/bootstrap/js/bootstrap.min.js}"></script>
+<!-- bootstrap datetimepicker -->
+<script th:src="@{/libs/plugins/datetimepicker/bootstrap-datetimepicker.js}" charset="UTF-8"></script>
+<script th:src="@{/libs/plugins/datetimepicker/bootstrap-datetimepicker.fr.js}" charset="UTF-8"></script>
+<!-- bootstrap datepicker -->
+<script th:src="@{/libs/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<!-- Select2 -->
+<script th:src="@{/libs/plugins/select2/select2.full.min.js}"></script>
+<!-- DataTables -->
+<script th:src="@{/libs/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/libs/plugins/datatables/dataTables.bootstrap.min.js}"></script>
+<!-- iCheck 1.0.1 -->
+<script th:src="@{/libs/plugins/iCheck/icheck.min.js}"></script>
+<!-- FLOT CHARTS -->
+<script th:src="@{/libs/plugins/flot/jquery.flot.min.js}"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script th:src="@{/libs/plugins/flot/jquery.flot.resize.min.js}"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script th:src="@{/libs/plugins/flot/jquery.flot.pie.min.js}"></script>
+<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+<script th:src="@{/libs/plugins/flot/jquery.flot.categories.min.js}"></script>
+<!-- Morris.js charts -->
+<script th:src="@{/libs/plugins/morris/raphael-min.js}"></script>
+<script th:src="@{/libs/plugins/morris/morris.min.js}"></script>
+<!-- rotate image -->
+<script th:src="@{/libs/plugins/rotate/jQueryRotateCompressed.js}"></script>
+<!-- mockjax -->
+<script th:src="@{/libs/plugins/autocomplete/jquery.mockjax.js}"></script>
+<!-- type-head -->
+<!--<script th:src="@{/libs/plugins/autocomplete/bootstrap-typeahead.js}"></script>-->
+<script th:src="@{/libs/plugins/autocomplete/bootstrap-typeahead.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/libs/dist/js/app.min.js}"></script>
+
+<script>
+    $(function () {
+        // Date-time picker
+        $('.form_datetime').datetimepicker({
+            weekStart: 1,
+            todayBtn: true ,
+            autoclose: true,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            startDate: new Date()
+        });
+
+        //Date picker
+        $('#datepicker').datepicker({
+            format: "MM-yyyy",
+            viewMode: "months",
+            minViewMode: "months",
+            autoclose: true
+        });
+
+        //Date picker
+        $('#datepicker').datepicker({
+            format: "MM-yyyy",
+            viewMode: "months",
+            minViewMode: "months",
+            autoclose: true
+        });
+
+        //Initialize Select2 Elements
+        $(".select2").select2();
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        });
+        //Red color scheme for iCheck
+        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+            checkboxClass: 'icheckbox_minimal-red',
+            radioClass: 'iradio_minimal-red'
+        });
+        //Flat red color scheme for iCheck
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $("#dataTable").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": false,
+            "autoWidth": false
+        });
+    });
+</script>
