@@ -20,7 +20,7 @@ public class EmotionControllerWeb {
 
     private Logger logger = Logger.getLogger(EmotionControllerWeb.class);
 
-    @RequestMapping(value = "/emotion", method = RequestMethod.GET)
+    @RequestMapping(value = {"/emotion", "/", ""}, method = RequestMethod.GET)
     public String loadCustomerEmotionView(Model model) {
         // get current date
         Date currentDate = new Date();
