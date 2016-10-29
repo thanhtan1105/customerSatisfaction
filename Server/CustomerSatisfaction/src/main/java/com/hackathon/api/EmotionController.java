@@ -9,6 +9,7 @@ import com.hackathon.model.EmotionCustomerResponse;
 import com.hackathon.model.TransactionModel;
 import com.hackathon.service.EmotionService;
 import com.hackathon.service.TransactionService;
+import com.hackathon.util.StoreFileUtils;
 import com.hackathon.util.ValidateUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Date;
 
 /**
  * Created by HienTQSE60896 on 10/29/2016.
@@ -44,7 +48,13 @@ public class EmotionController {
             }
             String customerCode = customerValue.getKey();
             EmotionCustomerResponse emotionCustomer = transactionService.getEmotionCustomer(customerCode);
-
+            //get url image
+            if (customerValue.getValue() != null) {
+                String url = customerValue.getValue();
+                byte[] data = Files.readAllBytes(Paths.get(url));
+                emotionCustomer.getMessages().setUrl(url);
+                emotionCustomer.getMessages().setImage(data);
+            }
             if (emotionCustomer != null) {
                 return new BaseResponse(true, emotionCustomer);
             } else {
@@ -71,9 +81,18 @@ public class EmotionController {
             String customerCode = customerValue.getKey();
             byte[] byteImage = IOUtils.toByteArray(imageFile.getInputStream());
 
+            /** TEST store file before*/
+            String fileNameBefore = I_URI.SESSION_API_EMOTION_CUSTOMER_CODE + "BEFORE" + new Date().getTime();
+            StoreFileUtils.storeFile(fileNameBefore, new ByteArrayInputStream(byteImage));
+            /** TEST store file before*/
+
+
 
             Boolean result = transactionService.uploadImage(new ByteArrayInputStream(byteImage), customerCode);
             if (result != null && result) {
+                String fileName = I_URI.SESSION_API_EMOTION_CUSTOMER_CODE ;
+                String urlFile = StoreFileUtils.storeFile(fileName, new ByteArrayInputStream(byteImage));
+                customerValue.setValue(urlFile);
                 return new BaseResponse(true, new Pair<>("uploadSuccess", result));
             } else {
                 return new BaseResponse(false);

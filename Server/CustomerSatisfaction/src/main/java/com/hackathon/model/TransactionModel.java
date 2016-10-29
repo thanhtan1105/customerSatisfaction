@@ -23,7 +23,6 @@ public class TransactionModel {
     private Double grade = 0d;
 
 
-    private CustomerEntity customer;
 
     private String CustomerCode;
 
@@ -36,7 +35,6 @@ public class TransactionModel {
             this.endTime = entity.getEndTime();
             this.emotionMost = entity.getEmotionMost();
             this.grade = entity.getGrade();
-            this.customer = entity.getCustomer();
             this.status = entity.getStatus();
             this.CustomerCode = entity.getCustomerCode();
         }
@@ -82,13 +80,6 @@ public class TransactionModel {
         this.grade = grade;
     }
 
-    public CustomerEntity getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerEntity customer) {
-        this.customer = customer;
-    }
 
     public ETransaction getStatus() {
         return status;

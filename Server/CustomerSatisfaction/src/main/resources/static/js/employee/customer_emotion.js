@@ -171,7 +171,7 @@ function worker_get_emotion() {
                             '<i class="fa fa-heartbeat bg-yellow"></i>' +
                             '<div class="timeline-item">' +
                             '<h3 class="timeline-header">' +
-                            '<span class="text-primary text-bold">' + formatDate(histories[i].date) + '</span></h3>' +
+                            '<span class="text-primary text-bold">' + formatDate(new Date(histories[i].date)) + '</span></h3>' +
                             '<div class="timeline-body">' +
                             'Ban đầu<ul><li>' + histories[i].emotionBefore + '</li></ul>' +
                             'Kết thúc<ul><li>' + histories[i].emotionEnd + '</li></ul>' +

@@ -75,8 +75,8 @@ public class TransactionService {
                     /** History*/
                     CustomerEntity customerEntity = transactionEntity.getCustomer();
                     List<EmotionHistoryModel> historyModels = null;
-                    List<TransactionEntity> transactions = customerEntity.getTransactions();
-                    if (transactions.size() >0) {
+                    List<TransactionEntity> transactions = customerEntity != null ? customerEntity.getTransactions() : null;
+                    if (transactions != null && transactions.size() >0) {
                         transactions.sort((t, z) -> t.getBeginTime().compareTo(z.getBeginTime()));
                         transactions.stream().forEach(t -> t.getEmotion().sort((a, b) ->a.getCreateTime().compareTo(b.getCreateTime())));
                         historyModels = transactions.stream().map(EmotionHistoryModel::new).collect(Collectors.toList());
@@ -168,12 +168,16 @@ public class TransactionService {
                     //save mostChoose
                     EmotionCustomerEntity emotionEntity = new EmotionCustomerEntity(emotionAnalysis, customerResultEntity);
                     emotionRepository.saveAndFlush(emotionEntity);
-
-                    CustomerModel customerModel = detectPersonService.detect(new ByteArrayInputStream(byteStream));
-                    if (customerModel != null){
-                        detectPersonService.addFace(imageStream, customerCode);
-                    }else {
-                        detectPersonService.createTraining(imageStream, customerCode);
+                    TransactionEntity transactionEntity = transactionRepository.findByCustomerCode(customerCode);
+                    if (transactionEntity.getCustomer() == null) {
+                        CustomerModel customerModel = detectPersonService.detect(new ByteArrayInputStream(byteStream));
+                        if (customerModel != null) {
+                            detectPersonService.addFace(new ByteArrayInputStream(byteStream), customerCode);
+                        } else {
+                            detectPersonService.createTraining(new ByteArrayInputStream(byteStream), customerCode);
+                        }
+                    }else{
+                        detectPersonService.addFace(new ByteArrayInputStream(byteStream), customerCode);
                     }
                 } else {
                     logger.error("********************** Cannot analyze customer emotion  ********************");
