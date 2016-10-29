@@ -13,5 +13,9 @@ public interface IViewConst {
     /**
      * Views for manager
      */
-    String MANAGER_REPORT = "/views/manager/report";
+    String MANAGER_REPORT = "/views/manager/customer_satisfaction/report";
+
+    String LOGIN_VIEW = "/views/login";
+    String INVALID_VIEW = "views/error/invalid";
+    String PERMISSION_DENIED_VIEW = "views/error/permissionDenied";
 }

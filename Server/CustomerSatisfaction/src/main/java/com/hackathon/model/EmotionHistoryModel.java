@@ -35,16 +35,16 @@ public class EmotionHistoryModel {
         this.date = date;
     }
 
-    public EEmotion getEmotionBefore() {
-        return emotionBefore;
+    public String getEmotionBefore() {
+        return emotionBefore.getName();
     }
 
     public void setEmotionBefore(EEmotion emotionBefore) {
         this.emotionBefore = emotionBefore;
     }
 
-    public EEmotion getEmotionEnd() {
-        return emotionEnd;
+    public String getEmotionEnd() {
+        return emotionEnd.getName();
     }
 
     public void setEmotionEnd(EEmotion emotionEnd) {

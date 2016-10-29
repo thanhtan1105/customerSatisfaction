@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface EmotionRepository extends JpaRepository<EmotionCustomerEntity, Integer> {
-    @Query(value = "select * from mydb.emotion c where customer_id = :customer_id order by c.create_time desc limit 1;", nativeQuery = true)
+    @Query(value = "select * from emotion c where c.customer_id = :customer_id order by c.create_time desc limit 1;", nativeQuery = true)
     public EmotionCustomerEntity findByCustomerIdLeast(@Param("customer_id") Integer customerId);
 
 }
