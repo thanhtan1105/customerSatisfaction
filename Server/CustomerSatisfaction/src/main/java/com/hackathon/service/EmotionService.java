@@ -1,5 +1,6 @@
 package com.hackathon.service;
 
+import com.hackathon.model.EmotionReport;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -9,4 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 @Component
 public class EmotionService {
+
+    public EmotionReport reportCustomerSatisfaction() {
+        EmotionReport emotionReport = new EmotionReport();
+        return emotionReport;
+    }
 }

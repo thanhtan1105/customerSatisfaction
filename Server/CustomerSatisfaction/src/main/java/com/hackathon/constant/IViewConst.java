@@ -9,4 +9,9 @@ public interface IViewConst {
      * Views for employee
      */
     String CUSTOMER_EMOTION_VIEW = "/views/employee/customer_emotion/customer_emotion";
+
+    /**
+     * Views for manager
+     */
+    String MANAGER_REPORT = "/views/manager/report";
 }
