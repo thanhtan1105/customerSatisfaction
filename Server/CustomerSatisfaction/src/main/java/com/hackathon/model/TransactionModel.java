@@ -3,12 +3,9 @@ package com.hackathon.model;
 import com.hackathon.constant.EEmotion;
 import com.hackathon.constant.ETransaction;
 import com.hackathon.entity.CustomerEntity;
-import com.hackathon.entity.EmotionCustomerEntity;
 import com.hackathon.entity.TransactionEntity;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Set;
 
 /**
  * Created by HienTQSE60896 on 10/29/2016.
@@ -28,6 +25,7 @@ public class TransactionModel {
 
     private CustomerEntity customer;
 
+    private String CustomerCode;
 
     private ETransaction status = ETransaction.BEGIN;
 
@@ -40,6 +38,7 @@ public class TransactionModel {
             this.grade = entity.getGrade();
             this.customer = entity.getCustomer();
             this.status = entity.getStatus();
+            this.CustomerCode = entity.getCustomerCode();
         }
     }
 
@@ -97,5 +96,13 @@ public class TransactionModel {
 
     public void setStatus(ETransaction status) {
         this.status = status;
+    }
+
+    public String getCustomerCode() {
+        return CustomerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        CustomerCode = customerCode;
     }
 }

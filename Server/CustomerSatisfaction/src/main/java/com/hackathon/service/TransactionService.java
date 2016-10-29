@@ -7,14 +7,13 @@ import com.hackathon.constant.ETransaction;
 import com.hackathon.constant.IContanst;
 import com.hackathon.entity.EmotionCustomerEntity;
 import com.hackathon.entity.TransactionEntity;
-import com.hackathon.model.EmotionAnalysisModel;
-import com.hackathon.model.TransactionModel;
+import com.hackathon.model.*;
 import com.hackathon.modelMCS.EmotionRecognizeResponse;
 import com.hackathon.modelMCS.FaceDetectResponse;
-import com.hackathon.repository.EmotionContentRepo;
 import com.hackathon.repository.EmotionRepository;
 import com.hackathon.repository.TransactionRepository;
 import com.hackathon.util.JsonUtil;
+import com.hackathon.util.UtilApps;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -26,10 +25,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by HienTQSE60896 on 10/29/2016.
@@ -44,7 +40,42 @@ public class TransactionService {
     private TransactionRepository transactionRepository;
 
     @Autowired
+    private SuggestionService suggestionService;
+
+    @Autowired
     private EmotionRepository emotionRepository;
+
+    public EmotionCustomerResponse getEmotionCustomer(String customerCode) {
+        try {
+            logger.info(IContanst.BEGIN_METHOD_SERVICE + Thread.currentThread().getStackTrace()[1].getMethodName());
+            logger.info("CustomerCode:" + customerCode);
+            //get Customer Service with customerCode
+            TransactionEntity customerResultEntity = transactionRepository.findByCustomerCode(customerCode);
+            if (customerResultEntity != null
+                    && (customerResultEntity.getStatus() == ETransaction.BEGIN
+                    || customerResultEntity.getStatus() == ETransaction.PROCESS)) {
+                Integer customerId = customerResultEntity.getId();
+                EmotionCustomerEntity emotionCustomerEntity = emotionRepository.findByCustomerIdLeast(customerId);
+                if (emotionCustomerEntity != null) {
+                    //get analysis
+                    EmotionAnalysisModel analysisModel = new EmotionAnalysisModel(emotionCustomerEntity);
+                    String messageEmotion = suggestionService.getEmotionMessage(analysisModel);
+                    List<EmotionContentModel> suggestion = suggestionService.getSuggestion(emotionCustomerEntity.getEmotionMost(), emotionCustomerEntity.getAge(), emotionCustomerEntity.getGender());
+                    //create message
+                    MessageModel messageModel = new MessageModel(emotionCustomerEntity);
+                    messageModel.setMessage(Collections.singletonList(UtilApps.formatSentence(messageEmotion)));
+                    messageModel.setSugguest(suggestion);
+                    return new EmotionCustomerResponse(customerCode, analysisModel, messageModel);
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        } finally {
+            logger.info(IContanst.END_METHOD_SERVICE);
+        }
+    }
 
     public TransactionModel beginTransaction() {
         try {
@@ -158,7 +189,6 @@ public class TransactionService {
         logger.info("[Get Customer Emotion] BEGIN SERVICE");
 
         byte[] bytes = IOUtils.toByteArray(inputStreamImg);
-
 
         Date dateFrom = new Date();
         //Call API

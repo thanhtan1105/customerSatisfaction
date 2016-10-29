@@ -15,4 +15,5 @@ public interface TransactionRepository extends JpaRepository<TransactionEntity, 
 
     @Query("SELECT c FROM TransactionEntity c WHERE c.CustomerCode = :customerCode")
     public TransactionEntity findByCustomerCode(@Param("customerCode") String customerCode);
+
 }

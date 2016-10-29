@@ -73,4 +73,6 @@ public interface IContanst {
     String SUGGESTION_BOTH_1_2_EMOTION = "%s cảm thấy %s nhưng %s và %s.";
 
     /** Message Competition*/
+
+    String DEPARTMENT_NAME = "customer";
 }
