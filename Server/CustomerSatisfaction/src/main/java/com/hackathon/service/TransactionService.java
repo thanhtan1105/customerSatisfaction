@@ -65,7 +65,19 @@ public class TransactionService {
                     MessageModel messageModel = new MessageModel(emotionCustomerEntity);
                     messageModel.setMessage(Collections.singletonList(UtilApps.formatSentence(messageEmotion)));
                     messageModel.setSugguest(suggestion);
-                    return new EmotionCustomerResponse(customerCode, analysisModel, messageModel);
+
+
+                    /** History*/
+                    CustomerEntity customerEntity = transactionEntity.getCustomer();
+                    List<EmotionHistoryModel> historyModels = null;
+                    List<TransactionEntity> transactions = customerEntity.getTransactions();
+                    if (transactions.size() >0) {
+                        transactions.sort((t, z) -> t.getBeginTime().compareTo(z.getBeginTime()));
+                        transactions.stream().forEach(t -> t.getEmotion().sort((a, b) ->a.getCreateTime().compareTo(b.getCreateTime())));
+                        historyModels = transactions.stream().map(EmotionHistoryModel::new).collect(Collectors.toList());
+                    }
+
+                    return new EmotionCustomerResponse(customerCode, analysisModel, messageModel, historyModels);
                 } else {
                     return null;
                 }
