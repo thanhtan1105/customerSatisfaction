@@ -2,6 +2,8 @@ package com.hackathon.entity;
 
 import com.hackathon.constant.EEmotion;
 import com.hackathon.constant.Gender;
+import com.hackathon.model.EmotionAnalysisModel;
+import com.hackathon.modelMCS.EmotionRecognizeScores;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -82,26 +84,26 @@ public class EmotionCustomerEntity implements Serializable {
         this.smile = smile;
     }
 
-//    public EmotionCustomerEntity(EmotionAnalysisModel analysisModel, CustomerServiceEntity customer) {
-//        if (analysisModel != null) {
-//            if (analysisModel.getEmotion() != null) {
-//                EmotionRecognizeScores emotion = analysisModel.getEmotion();
-//                this.anger = emotion.getAnger();
-//                this.contempt = emotion.getContempt();
-//                this.disgust = emotion.getDisgust();
-//                this.fear = emotion.getFear();
-//                this.happiness = emotion.getHappiness();
-//                this.neutral = emotion.getNeutral();
-//                this.sadness = emotion.getSadness();
-//                this.surprise = emotion.getSurprise();
-//            }
-//            this.age = analysisModel.getAge();
-//            this.gender = analysisModel.getGender();
-//            this.smile = analysisModel.getSmile();
-//            this.emotionMost = analysisModel.getEmotionMost();
-//            this.transaction = customer;
-//        }
-//    }
+    public EmotionCustomerEntity(EmotionAnalysisModel analysisModel, TransactionEntity customer) {
+        if (analysisModel != null) {
+            if (analysisModel.getEmotion() != null) {
+                EmotionRecognizeScores emotion = analysisModel.getEmotion();
+                this.anger = emotion.getAnger();
+                this.contempt = emotion.getContempt();
+                this.disgust = emotion.getDisgust();
+                this.fear = emotion.getFear();
+                this.happiness = emotion.getHappiness();
+                this.neutral = emotion.getNeutral();
+                this.sadness = emotion.getSadness();
+                this.surprise = emotion.getSurprise();
+            }
+            this.age = analysisModel.getAge();
+            this.gender = analysisModel.getGender();
+            this.smile = analysisModel.getSmile();
+            this.emotionMost = analysisModel.getEmotionMost();
+            this.transaction = customer;
+        }
+    }
 
     public Long getId() {
         return id;

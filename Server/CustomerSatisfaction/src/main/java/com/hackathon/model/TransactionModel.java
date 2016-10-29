@@ -1,58 +1,46 @@
-package com.hackathon.entity;
+package com.hackathon.model;
 
 import com.hackathon.constant.EEmotion;
 import com.hackathon.constant.ETransaction;
-import com.hackathon.model.EmotionAnalysisModel;
-import com.hackathon.modelMCS.EmotionRecognizeScores;
-import com.hackathon.util.ValidateUtil;
+import com.hackathon.entity.CustomerEntity;
+import com.hackathon.entity.TransactionEntity;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Set;
 
 /**
  * Created by HienTQSE60896 on 10/29/2016.
  */
-@Entity
-@Table(name = "transaction", schema = "hackathon")
-public class TransactionEntity {
+public class TransactionModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-
-    @Column(name = "begin_time")
     private Timestamp beginTime;
 
-    @Column(name = "end_time")
     private Timestamp endTime;
 
-    @Column(name = "emotion_most")
     private EEmotion emotionMost;
 
-    @Column(name = "grade")
     private Double grade = 0d;
 
-    @Basic
-    @Column(name = "customer_code", nullable = false)
-    private String CustomerCode;
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer")
     private CustomerEntity customer;
 
-    @OneToMany(mappedBy = "transaction")
-    private Set<EmotionCustomerEntity> emotion;
+    private String CustomerCode;
 
-    @Basic
-    @Column(name = "status")
     private ETransaction status = ETransaction.BEGIN;
 
-    public TransactionEntity() {
+    public TransactionModel(TransactionEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.beginTime = entity.getBeginTime();
+            this.endTime = entity.getEndTime();
+            this.emotionMost = entity.getEmotionMost();
+            this.grade = entity.getGrade();
+            this.customer = entity.getCustomer();
+            this.status = entity.getStatus();
+            this.CustomerCode = entity.getCustomerCode();
+        }
     }
-
 
     public Integer getId() {
         return id;
@@ -94,14 +82,6 @@ public class TransactionEntity {
         this.grade = grade;
     }
 
-    public Set<EmotionCustomerEntity> getEmotion() {
-        return emotion;
-    }
-
-    public void setEmotion(Set<EmotionCustomerEntity> emotion) {
-        this.emotion = emotion;
-    }
-
     public CustomerEntity getCustomer() {
         return customer;
     }
@@ -124,16 +104,5 @@ public class TransactionEntity {
 
     public void setCustomerCode(String customerCode) {
         CustomerCode = customerCode;
-    }
-
-    public void calculateGrade() {
-        if (ValidateUtil.isNotEmpty(emotion)) {
-            double sum = 0d;
-            for (EmotionCustomerEntity emotion : this.emotion) {
-                sum += emotion.getEmotionMost().getGrade();
-            }
-            this.grade = sum / emotion.size();
-        }
-
     }
 }
