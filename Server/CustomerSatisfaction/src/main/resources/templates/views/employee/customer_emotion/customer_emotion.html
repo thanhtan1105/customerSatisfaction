@@ -13,8 +13,8 @@
     <section class="content">
         <!-- Your Page Content Here -->
         <!-- store accountId-->
-        <input id="accountId" th:if="${session} and ${session.UserSession}"
-              th:value="${session.UserSession.id}" type="hidden"/>
+        <input id="accountId"
+              th:value="'Lê Thanh Tân'" type="hidden"/>
         <!-- Info: manager, department, date -->
         <div style="margin-bottom: 10px">
             <div class="row text-black" style="font-size: 24px;">
@@ -30,8 +30,7 @@
                 <div class="col-sm-5 text-right ">
                     <label>Phòng Ban:</label></div>
                 <div class="col-sm-6 text-left">
-                    <font th:if="${session} and ${session.UserSession}"
-                          th:text="${session.UserSession.department.name}"></font></div>
+                    <font>Chăm Sóc Khách Hàng</font></div>
             </div>
             <!-- /.end department -->
             <!-- date -->
