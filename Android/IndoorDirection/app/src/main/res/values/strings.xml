@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">IndoorDirection</string>
+    <string name="action_settings">Settings</string>
+    <string name="failure">Fail to connect with server</string>
+</resources>
