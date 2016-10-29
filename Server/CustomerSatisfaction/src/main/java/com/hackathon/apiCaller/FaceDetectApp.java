@@ -54,8 +54,11 @@ public class FaceDetectApp {
      */
     public static void main(String[] args) throws IOException, GeneralSecurityException {
         Path inputPath = Paths.get("src/abc.jpg");
+         byte[] data = Files.readAllBytes(inputPath);
+
+
         FaceDetectApp app = new FaceDetectApp(getVisionService());
-        FaceAnnotation face = app.detectFaces(inputPath, MAX_RESULTS);
+        FaceAnnotation face = app.detectFaces(data, MAX_RESULTS);
 
 
     }
@@ -89,8 +92,8 @@ public class FaceDetectApp {
     /**
      * Gets up to {@code maxResults} faces for an image stored at {@code path}.
      */
-    public FaceAnnotation detectFaces(Path path, int maxResults) throws IOException {
-        byte[] data = Files.readAllBytes(path);
+    public FaceAnnotation detectFaces(byte[] data, int maxResults) throws IOException {
+
 
         AnnotateImageRequest request =
                 new AnnotateImageRequest()
