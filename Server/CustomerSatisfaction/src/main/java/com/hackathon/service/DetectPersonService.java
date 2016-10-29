@@ -87,7 +87,7 @@ public class DetectPersonService {
 
         //add new Customer
         TransactionEntity transactionEntity = transactionRepository.findByCustomerCode(customerCode);
-        if (transactionEntity.getCustomer() != null) {
+        if (transactionEntity.getCustomer()  == null || transactionEntity.getCustomer().getPersonCode() == null) {
             createTraining(image, customerCode);
         } else {
             CustomerEntity customerEntity = transactionEntity.getCustomer();

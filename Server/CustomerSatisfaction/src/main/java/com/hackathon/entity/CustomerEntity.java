@@ -2,7 +2,7 @@ package com.hackathon.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by HienTQSE60896 on 10/29/2016.
@@ -25,7 +25,7 @@ public class CustomerEntity {
     private Timestamp CreateTime;
 
     @OneToMany(mappedBy = "customer")
-    private Set<TransactionEntity> transactions;
+    private List<TransactionEntity> transactions;
 
 
     public Integer getId() {
@@ -60,11 +60,11 @@ public class CustomerEntity {
         CreateTime = createTime;
     }
 
-    public Set<TransactionEntity> getTransactions() {
+    public List<TransactionEntity> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Set<TransactionEntity> transactions) {
+    public void setTransactions(List<TransactionEntity> transactions) {
         this.transactions = transactions;
     }
 }

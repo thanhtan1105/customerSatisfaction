@@ -5,6 +5,7 @@ import com.hackathon.accessMCS.FaceServiceMCSImpl;
 import com.hackathon.common.BaseResponse;
 import com.hackathon.constant.ETransaction;
 import com.hackathon.constant.IContanst;
+import com.hackathon.entity.CustomerEntity;
 import com.hackathon.entity.EmotionCustomerEntity;
 import com.hackathon.entity.TransactionEntity;
 import com.hackathon.model.*;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by HienTQSE60896 on 10/29/2016.
@@ -53,11 +55,11 @@ public class TransactionService {
             logger.info(IContanst.BEGIN_METHOD_SERVICE + Thread.currentThread().getStackTrace()[1].getMethodName());
             logger.info("CustomerCode:" + customerCode);
             //get Customer Service with customerCode
-            TransactionEntity customerResultEntity = transactionRepository.findByCustomerCode(customerCode);
-            if (customerResultEntity != null
-                    && (customerResultEntity.getStatus() == ETransaction.BEGIN
-                    || customerResultEntity.getStatus() == ETransaction.PROCESS)) {
-                Integer customerId = customerResultEntity.getId();
+            TransactionEntity transactionEntity = transactionRepository.findByCustomerCode(customerCode);
+            if (transactionEntity != null
+                    && (transactionEntity.getStatus() == ETransaction.BEGIN
+                    || transactionEntity.getStatus() == ETransaction.PROCESS)) {
+                Integer customerId = transactionEntity.getId();
                 EmotionCustomerEntity emotionCustomerEntity = emotionRepository.findByCustomerIdLeast(customerId);
                 if (emotionCustomerEntity != null) {
                     //get analysis
@@ -68,7 +70,20 @@ public class TransactionService {
                     MessageModel messageModel = new MessageModel(emotionCustomerEntity);
                     messageModel.setMessage(Collections.singletonList(UtilApps.formatSentence(messageEmotion)));
                     messageModel.setSugguest(suggestion);
-                    return new EmotionCustomerResponse(customerCode, analysisModel, messageModel);
+
+
+                    /** History*/
+                    CustomerEntity customerEntity = transactionEntity.getCustomer();
+                    List<EmotionHistoryModel> historyModels = null;
+                    List<TransactionEntity> transactions = customerEntity.getTransactions();
+                    if (transactions.size() >0) {
+                        transactions.sort((t, z) -> t.getBeginTime().compareTo(z.getBeginTime()));
+                        transactions.stream().forEach(t -> t.getEmotion().sort((a, b) ->a.getCreateTime().compareTo(b.getCreateTime())));
+                        historyModels = transactions.stream().map(EmotionHistoryModel::new).collect(Collectors.toList());
+                    }
+
+
+                    return new EmotionCustomerResponse(customerCode, analysisModel, messageModel, historyModels);
                 } else {
                     return null;
                 }

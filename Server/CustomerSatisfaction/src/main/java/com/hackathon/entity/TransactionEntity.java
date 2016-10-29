@@ -2,15 +2,13 @@ package com.hackathon.entity;
 
 import com.hackathon.constant.EEmotion;
 import com.hackathon.constant.ETransaction;
-import com.hackathon.model.EmotionAnalysisModel;
-import com.hackathon.modelMCS.EmotionRecognizeScores;
 import com.hackathon.util.UtilApps;
 import com.hackathon.util.ValidateUtil;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by HienTQSE60896 on 10/29/2016.
@@ -46,7 +44,7 @@ public class TransactionEntity {
     private CustomerEntity customer;
 
     @OneToMany(mappedBy = "transaction")
-    private Set<EmotionCustomerEntity> emotion;
+    private List<EmotionCustomerEntity> emotion;
 
     @Basic
     @Column(name = "status")
@@ -97,11 +95,11 @@ public class TransactionEntity {
         this.grade = grade;
     }
 
-    public Set<EmotionCustomerEntity> getEmotion() {
+    public List<EmotionCustomerEntity> getEmotion() {
         return emotion;
     }
 
-    public void setEmotion(Set<EmotionCustomerEntity> emotion) {
+    public void setEmotion(List<EmotionCustomerEntity> emotion) {
         this.emotion = emotion;
     }
 
