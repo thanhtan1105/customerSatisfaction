@@ -22,10 +22,12 @@ public class Interceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("Interceptor");
         String url = request.getRequestURI();
-        Pair<String, String> customerSession = EmotionSession.getValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE);
-        if (customerSession == null || ValidateUtil.isEmpty(customerSession.getKey())) {
-            TransactionModel customerServiceModel = emotionService.beginTransaction();
-            EmotionSession.setValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE, new Pair(customerServiceModel.getCustomerCode()));
+        if (url.equals("/") || url.equals("/emotion")) {
+            Pair<String, String> customerSession = EmotionSession.getValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE);
+            if (customerSession == null || ValidateUtil.isEmpty(customerSession.getKey())) {
+                TransactionModel customerServiceModel = emotionService.beginTransaction();
+                EmotionSession.setValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE, new Pair(customerServiceModel.getCustomerCode()));
+            }
         }
         return true;
     }
