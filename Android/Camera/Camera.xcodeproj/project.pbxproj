@@ -20,6 +20,9 @@
 		A68097711DC46DD9003702E4 /* APIDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680976E1DC46DD9003702E4 /* APIDefine.swift */; };
 		A68097721DC46DD9003702E4 /* APIRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680976F1DC46DD9003702E4 /* APIRequestProtocol.swift */; };
 		A68097731DC46DD9003702E4 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68097701DC46DD9003702E4 /* APIRequest.swift */; };
+		A68097761DC46F50003702E4 /* CameraEmotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68097751DC46F50003702E4 /* CameraEmotionViewController.swift */; };
+		A68097781DC46F65003702E4 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68097771DC46F65003702E4 /* Camera.swift */; };
+		A680977A1DC46F7A003702E4 /* LeThanhTanLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68097791DC46F7A003702E4 /* LeThanhTanLoading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		A680976E1DC46DD9003702E4 /* APIDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDefine.swift; sourceTree = "<group>"; };
 		A680976F1DC46DD9003702E4 /* APIRequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestProtocol.swift; sourceTree = "<group>"; };
 		A68097701DC46DD9003702E4 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		A68097751DC46F50003702E4 /* CameraEmotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEmotionViewController.swift; sourceTree = "<group>"; };
+		A68097771DC46F65003702E4 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		A68097791DC46F7A003702E4 /* LeThanhTanLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeThanhTanLoading.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,7 @@
 		A680973A1DC46AC8003702E4 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				A68097741DC46F4A003702E4 /* Controller */,
 				A680976C1DC46D3E003702E4 /* Service */,
 				A680976B1DC46D2F003702E4 /* AppDelegate */,
 				A680976A1DC46D28003702E4 /* Model */,
@@ -130,6 +137,7 @@
 				A68097421DC46AC8003702E4 /* Assets.xcassets */,
 				A68097441DC46AC8003702E4 /* LaunchScreen.storyboard */,
 				A68097471DC46AC8003702E4 /* Info.plist */,
+				A68097791DC46F7A003702E4 /* LeThanhTanLoading.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 		A680976A1DC46D28003702E4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A68097771DC46F65003702E4 /* Camera.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -189,6 +198,14 @@
 				A68097701DC46DD9003702E4 /* APIRequest.swift */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		A68097741DC46F4A003702E4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A68097751DC46F50003702E4 /* CameraEmotionViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		D2855403C6DCB808E61661B9 /* Frameworks */ = {
@@ -495,8 +512,11 @@
 				A68097721DC46DD9003702E4 /* APIRequestProtocol.swift in Sources */,
 				A680973E1DC46AC8003702E4 /* ViewController.swift in Sources */,
 				A68097711DC46DD9003702E4 /* APIDefine.swift in Sources */,
+				A68097761DC46F50003702E4 /* CameraEmotionViewController.swift in Sources */,
 				A68097731DC46DD9003702E4 /* APIRequest.swift in Sources */,
+				A68097781DC46F65003702E4 /* Camera.swift in Sources */,
 				A680973C1DC46AC8003702E4 /* AppDelegate.swift in Sources */,
+				A680977A1DC46F7A003702E4 /* LeThanhTanLoading.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
