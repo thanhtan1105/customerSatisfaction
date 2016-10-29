@@ -23,6 +23,7 @@
 		A68097761DC46F50003702E4 /* CameraEmotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68097751DC46F50003702E4 /* CameraEmotionViewController.swift */; };
 		A68097781DC46F65003702E4 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68097771DC46F65003702E4 /* Camera.swift */; };
 		A680977A1DC46F7A003702E4 /* LeThanhTanLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68097791DC46F7A003702E4 /* LeThanhTanLoading.swift */; };
+		A6E833801DC4C43E00920EDC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8337F1DC4C43E00920EDC /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		A68097751DC46F50003702E4 /* CameraEmotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraEmotionViewController.swift; sourceTree = "<group>"; };
 		A68097771DC46F65003702E4 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		A68097791DC46F7A003702E4 /* LeThanhTanLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeThanhTanLoading.swift; sourceTree = "<group>"; };
+		A6E8337F1DC4C43E00920EDC /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 		A68097741DC46F4A003702E4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A6E8337F1DC4C43E00920EDC /* SettingViewController.swift */,
 				A68097751DC46F50003702E4 /* CameraEmotionViewController.swift */,
 			);
 			name = Controller;
@@ -308,6 +311,7 @@
 				TargetAttributes = {
 					A68097371DC46AC8003702E4 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = W5KA45T8VV;
 					};
 					A680974B1DC46AC8003702E4 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -514,6 +518,7 @@
 				A68097711DC46DD9003702E4 /* APIDefine.swift in Sources */,
 				A68097761DC46F50003702E4 /* CameraEmotionViewController.swift in Sources */,
 				A68097731DC46DD9003702E4 /* APIRequest.swift in Sources */,
+				A6E833801DC4C43E00920EDC /* SettingViewController.swift in Sources */,
 				A68097781DC46F65003702E4 /* Camera.swift in Sources */,
 				A680973C1DC46AC8003702E4 /* AppDelegate.swift in Sources */,
 				A680977A1DC46F7A003702E4 /* LeThanhTanLoading.swift in Sources */,
@@ -661,10 +666,13 @@
 			baseConfigurationReference = 847A76660ADC80D99FCB7BC0 /* Pods-Camera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Camera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lethanhtan.Camera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -673,10 +681,13 @@
 			baseConfigurationReference = 0785E1C2AD8BE2C2C18AE34B /* Pods-Camera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Camera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lethanhtan.Camera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

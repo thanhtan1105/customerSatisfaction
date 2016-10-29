@@ -32,7 +32,7 @@ class APIRequest: NSObject {
       print("Image data: \(imageData?.length)")
       let data = NSData()
       multipartFormData.appendBodyPart(data: imageData!, name: "image", fileName: "\(data)", mimeType: "image/png")
-      multipartFormData.appendBodyPart(data: String(accountID).dataUsingEncoding(NSUTF8StringEncoding)!, name: "accountId")
+//      multipartFormData.appendBodyPart(data: String(accountID).dataUsingEncoding(NSUTF8StringEncoding)!, name: "accountId")
     }) { (encodingResult: Manager.MultipartFormDataEncodingResult) in
       switch encodingResult {
       case .Success(let upload, _, _):
