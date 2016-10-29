@@ -121,7 +121,9 @@ public class EmotionController {
 
     @RequestMapping(value = I_URI.API_EMOTION_REPORT)
     @ResponseBody
-    public BaseResponse nextTransaction(@RequestParam("managerId") Long managerId) {
+    public BaseResponse reportEmotion(@RequestParam("managerId") Long managerId) {
+        logger.info(IContanst.BEGIN_METHOD_CONTROLLER + Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.info(Thread.currentThread().getStackTrace()[1].getMethodName() + "[managerId] " + managerId);
         return new BaseResponse(true, emotionService.reportCustomerSatisfaction());
     }
 }

@@ -82,7 +82,6 @@ public class TransactionService {
                         historyModels = transactions.stream().map(EmotionHistoryModel::new).collect(Collectors.toList());
                     }
 
-
                     return new EmotionCustomerResponse(customerCode, analysisModel, messageModel, historyModels);
                 } else {
                     return null;
