@@ -1,0 +1,41 @@
+<head lang="en">
+    <meta charset="UTF-8"/>
+</head>
+
+<aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+            <li class="header" style="color: white;">MAIN MENU</li>
+            <!-- Optionally, you can add icons to the links -->
+            <li th:attr="class=${SideBar == 'Checkin'}? 'active' : ''">
+                <a th:href="@{/manager/check_in/}">
+                    <i class="fa fa-laptop"></i>
+                    <span>Check-in Manual</span>
+                </a>
+            </li>
+            <li th:attr="class=${SideBar == 'Timekeeping'}? 'active' : ''">
+                <a th:href="@{/manager/timekeeping/}">
+                    <i class="fa fa-laptop"></i>
+                    <span>Timekeeping</span>
+                </a>
+            </li>
+            <li th:attr="class=${SideBar == 'CustomerSatisfaction'}? 'active' : ''">
+                <a th:href="@{/manager/cus_satisfaction/month/}">
+                    <i class="fa fa-laptop"></i>
+                    <span>Customer Satisfaction</span>
+                </a>
+            </li>
+            <li th:attr="class=${SideBar == 'ManagementReminder'}? 'active' : ''">
+                <a th:href="@{/manager/reminders/}">
+                    <i class="fa fa-laptop"></i>
+                    <span>Management Reminders</span>
+                </a>
+            </li>
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+</aside>
