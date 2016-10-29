@@ -186,7 +186,7 @@ extension CameraEmotionViewController {
     case .PortraitUpsideDown:
       return AVCaptureVideoOrientation.PortraitUpsideDown
     default:
-      // Can it happens?
+      // Can it happens? nope!!
       return AVCaptureVideoOrientation.Portrait
     }
   }
