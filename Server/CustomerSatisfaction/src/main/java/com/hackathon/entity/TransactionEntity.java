@@ -4,10 +4,12 @@ import com.hackathon.constant.EEmotion;
 import com.hackathon.constant.ETransaction;
 import com.hackathon.model.EmotionAnalysisModel;
 import com.hackathon.modelMCS.EmotionRecognizeScores;
+import com.hackathon.util.UtilApps;
 import com.hackathon.util.ValidateUtil;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -23,7 +25,7 @@ public class TransactionEntity {
 
 
     @Column(name = "begin_time")
-    private Timestamp beginTime;
+    private Timestamp beginTime = new Timestamp(new Date().getTime());
 
     @Column(name = "end_time")
     private Timestamp endTime;
@@ -40,7 +42,7 @@ public class TransactionEntity {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer")
+    @JoinColumn(name = "customer", nullable = true)
     private CustomerEntity customer;
 
     @OneToMany(mappedBy = "transaction")
@@ -51,6 +53,7 @@ public class TransactionEntity {
     private ETransaction status = ETransaction.BEGIN;
 
     public TransactionEntity() {
+        this.CustomerCode = UtilApps.generateToken();
     }
 
 

@@ -45,6 +45,9 @@ public class TransactionService {
     @Autowired
     private EmotionRepository emotionRepository;
 
+    @Autowired
+    private DetectPersonService detectPersonService;
+
     public EmotionCustomerResponse getEmotionCustomer(String customerCode) {
         try {
             logger.info(IContanst.BEGIN_METHOD_SERVICE + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -82,11 +85,11 @@ public class TransactionService {
             logger.info(IContanst.BEGIN_METHOD_SERVICE + Thread.currentThread().getStackTrace()[1].getMethodName());
             //create Customer service
 
-            TransactionEntity customerResultEntity = new TransactionEntity();
+            TransactionEntity tran = new TransactionEntity();
 
             //set status = BEGIN
-            customerResultEntity.setStatus(ETransaction.BEGIN);
-            TransactionEntity entity = transactionRepository.saveAndFlush(customerResultEntity);
+            tran.setStatus(ETransaction.BEGIN);
+            TransactionEntity entity = transactionRepository.saveAndFlush(tran);
             return new TransactionModel(entity);
 
         } finally {
@@ -144,12 +147,20 @@ public class TransactionService {
                     transactionRepository.saveAndFlush(customerResultEntity);
                 }
 
+                byte[] byteStream = IOUtils.toByteArray(imageStream);
                 //analyze emotion
-                EmotionAnalysisModel emotionAnalysis = getCustomerEmotion(imageStream);
+                EmotionAnalysisModel emotionAnalysis = getCustomerEmotion(new ByteArrayInputStream(byteStream));
                 if (emotionAnalysis != null) {
                     //save mostChoose
                     EmotionCustomerEntity emotionEntity = new EmotionCustomerEntity(emotionAnalysis, customerResultEntity);
                     emotionRepository.saveAndFlush(emotionEntity);
+
+                    CustomerModel customerModel = detectPersonService.detect(new ByteArrayInputStream(byteStream));
+                    if (customerModel != null){
+                        detectPersonService.addFace(imageStream, customerCode);
+                    }else {
+                        detectPersonService.createTraining(imageStream, customerCode);
+                    }
                 } else {
                     logger.error("********************** Cannot analyze customer emotion  ********************");
                     return false;

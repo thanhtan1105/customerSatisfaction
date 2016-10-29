@@ -52,7 +52,9 @@ public class DetectPersonService {
             String personID = checkExistFaceInDepartment(faceImage, Arrays.asList(IContanst.DEPARTMENT_NAME));
             if (personID != null) {
                 CustomerEntity customerEntity = customerRepository.findByUsercode(personID);
-                return new CustomerModel(customerEntity);
+                if (customerEntity != null) {
+                    return new CustomerModel(customerEntity);
+                }
             }
         }
         return null;
@@ -61,7 +63,7 @@ public class DetectPersonService {
 
     public void createTraining(InputStream image, String customerCode) throws IOException, URISyntaxException {
 
-        BaseResponse response = personServiceMCS.createPerson(IContanst.DEPARTMENT_NAME, "", "");
+            BaseResponse response = personServiceMCS.createPerson(IContanst.DEPARTMENT_NAME, "Customer", "......");
         Map<String, String> map = (Map<String, String>) response.getData();
         if (map != null) {
             String personID = map.get("personId");
@@ -85,7 +87,7 @@ public class DetectPersonService {
 
         //add new Customer
         TransactionEntity transactionEntity = transactionRepository.findByCustomerCode(customerCode);
-        if (transactionEntity.getCustomer() == null) {
+        if (transactionEntity.getCustomer() != null) {
             createTraining(image, customerCode);
         } else {
             CustomerEntity customerEntity = transactionEntity.getCustomer();

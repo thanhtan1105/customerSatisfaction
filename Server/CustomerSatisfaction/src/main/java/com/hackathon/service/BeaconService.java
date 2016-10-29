@@ -8,6 +8,7 @@ import com.hackathon.repository.BeaconRepo;
 import com.hackathon.repository.CoordinateRepo;
 import com.hackathon.util.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,8 @@ import java.util.stream.Collectors;
 /**
  * Created by lethanhtan on 10/29/16.
  */
+@Service
+
 public class BeaconService {
 
     @Autowired

@@ -5,7 +5,6 @@ import com.hackathon.common.BaseResponse;
 import com.hackathon.common.Pair;
 import com.hackathon.constant.IContanst;
 import com.hackathon.constant.I_URI;
-import com.hackathon.entity.TransactionEntity;
 import com.hackathon.model.EmotionCustomerResponse;
 import com.hackathon.model.TransactionModel;
 import com.hackathon.service.EmotionService;
@@ -23,7 +22,8 @@ import java.io.ByteArrayInputStream;
 /**
  * Created by HienTQSE60896 on 10/29/2016.
  */
-@RestController("/api/emotion")
+@RestController
+@RequestMapping("/api/emotion")
 public class EmotionController {
 
     Logger logger = LogManager.getLogger(EmotionController.class);
@@ -61,12 +61,10 @@ public class EmotionController {
 
     @RequestMapping(value = I_URI.API_EMOTION_UPLOAD_IMAGE, method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse uploadImage(@RequestParam(I_URI.PARAMETER_EMOTION_ACCOUNT_ID) Long accountId,
-                                    @RequestParam("image") MultipartFile imageFile) {
+    public BaseResponse uploadImage(@RequestParam("image") MultipartFile imageFile) {
         try {
             logger.info(IContanst.BEGIN_METHOD_CONTROLLER + Thread.currentThread().getStackTrace()[1].getMethodName());
-            logger.debug(String.format("accountId = '%s' ", accountId));
-            Pair<String, String> customerValue = EmotionSession.getValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE + accountId);
+            Pair<String, String> customerValue = EmotionSession.getValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE);
             if (customerValue == null || ValidateUtil.isEmpty(customerValue.getKey())) {
                 return new BaseResponse(false);
             }
@@ -91,13 +89,10 @@ public class EmotionController {
 
     @RequestMapping(value = I_URI.API_EMOTION_NEXT_TRANSACTION)
     @ResponseBody
-    public BaseResponse nextTransaction(@RequestParam(I_URI.PARAMETER_EMOTION_ACCOUNT_ID) Long accountId,
-                                        @RequestParam(value = "skip", required = false) Boolean isSkip) {
+    public BaseResponse nextTransaction(@RequestParam(value = "skip", required = false) Boolean isSkip) {
         try {
             logger.info(IContanst.BEGIN_METHOD_CONTROLLER + Thread.currentThread().getStackTrace()[1].getMethodName());
-            logger.debug(String.format("accountId = '%s' ", accountId));
-
-            Pair<String, String> customerValue = EmotionSession.getValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE + accountId);
+            Pair<String, String> customerValue = EmotionSession.getValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE);
             if (customerValue == null || ValidateUtil.isEmpty(customerValue.getKey())) {
                 return new BaseResponse(false);
             }
@@ -108,8 +103,8 @@ public class EmotionController {
                 String newCustomer = result.getCustomerCode();
 
                 //replace newCustomer to session
-                EmotionSession.remove(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE + accountId);
-                EmotionSession.setValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE + accountId, new Pair<String, String>(newCustomer));
+                EmotionSession.remove(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE);
+                EmotionSession.setValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE, new Pair<String, String>(newCustomer));
 
                 return new BaseResponse(true, new Pair<String, String>("customerCode", result.getCustomerCode()));
             } else {

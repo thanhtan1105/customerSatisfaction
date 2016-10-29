@@ -74,5 +74,5 @@ public interface IContanst {
 
     /** Message Competition*/
 
-    String DEPARTMENT_NAME = "customer";
+    String DEPARTMENT_NAME = "humanresource";
 }
