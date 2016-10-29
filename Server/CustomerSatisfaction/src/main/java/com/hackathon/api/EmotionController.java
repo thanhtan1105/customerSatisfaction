@@ -8,6 +8,7 @@ import com.hackathon.constant.I_URI;
 import com.hackathon.entity.TransactionEntity;
 import com.hackathon.model.EmotionCustomerResponse;
 import com.hackathon.model.TransactionModel;
+import com.hackathon.service.EmotionService;
 import com.hackathon.service.TransactionService;
 import com.hackathon.util.ValidateUtil;
 import org.apache.commons.io.IOUtils;
@@ -29,6 +30,8 @@ public class EmotionController {
 
     @Autowired
     private TransactionService transactionService;
+    @Autowired
+    private EmotionService emotionService;
 
     @RequestMapping(value = I_URI.API_EMOTION_GET_EMOTION)
     @ResponseBody
@@ -121,5 +124,9 @@ public class EmotionController {
         }
     }
 
-
+    @RequestMapping(value = I_URI.API_EMOTION_REPORT)
+    @ResponseBody
+    public BaseResponse nextTransaction(@RequestParam("managerId") Long managerId) {
+        return new BaseResponse(true, emotionService.reportCustomerSatisfaction());
+    }
 }
