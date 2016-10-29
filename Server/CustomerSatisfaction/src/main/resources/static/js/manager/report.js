@@ -2,6 +2,22 @@
  * Created by TrungNN on 10/29/2016.
  */
 
+function load_report() {
+    var managerId = 1;
+    console.info('[managerId]' + managerId);
+    var urlString = '/api/emotion/report?managerId=' + managerId;
+    $.ajax({
+        type: 'GET',
+        url: urlString,
+        success: function (response) {
+            var success = response.success;
+            console.info('[success] ' + success);
+            if (success) {
+            }
+        }
+    });
+}
+
 /**
  * Initial high chart
  */
