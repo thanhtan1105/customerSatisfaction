@@ -29,8 +29,8 @@ public class EmotionControllerWeb {
     }
 
     @RequestMapping(value = "/report", method = RequestMethod.GET)
-    public String loadReport(Model model) {
+    public String loadReportView() {
 
-        return IViewConst.CUSTOMER_EMOTION_VIEW;
+        return IViewConst.MANAGER_REPORT;
     }
 }
