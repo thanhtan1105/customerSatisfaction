@@ -42,4 +42,6 @@ dependencies {
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.5'
 	compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.22'
+	compile 'com.google.apis:google-api-services-vision:v1-rev26-1.22.0'
+
 }

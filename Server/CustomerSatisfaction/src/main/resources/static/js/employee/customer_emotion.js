@@ -110,7 +110,14 @@ function worker_get_emotion() {
                     // setSrcImage('#image-customer', urlImage)
                     setSrcImage('#image-customer', "data:image/png;base64," + imageByte)
                 } else {
-                    setSrcImage('#image-customer', '/libs/dist/img/avatar_customer.png')
+                    setTimeout(function () {
+                        //
+                    }, 2000);
+                    if (urlImage != null) {
+                        setSrcImage('#image-customer', "data:image/png;base64," + imageByte);
+                    } else {
+                        setSrcImage('#image-customer', '/libs/dist/img/avatar_customer.png')
+                    }
                 }
                 //reset next angle
                 // resetNextAngle('#image-customer');

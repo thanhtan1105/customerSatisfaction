@@ -19,7 +19,7 @@ public enum  EEmotion {
     CONTEMPT(1, -4d, "kinh thường"),
     DISGUST(2, -2.5d, "căm phẫn"),
     FEAR(3, -1d, "nhút nhát"),
-    NEUTRAL(4, 2.5, "bình thản"),
+    NEUTRAL(4, 2.5, "bình thường"),
     SADNESS(5, -2.5d, "buồn"),
     SURPRISE(6, 3d,"ngạc nhiên"),
     HAPPINESS(7, 5d, "hạnh phúc"),

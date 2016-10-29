@@ -123,7 +123,7 @@ public class TransactionService {
     public Boolean changeStatusTransaction(String customerCode, ETransaction stauts) {
         try {
             logger.info(IContanst.BEGIN_METHOD_SERVICE + Thread.currentThread().getStackTrace()[1].getMethodName());
-            logger.info(String.format("customerCode = '%s', Status = ''", customerCode, stauts));
+            logger.info(String.format("customerCode = '%s', Status = '%s'", customerCode, stauts));
             //get Customer Service with customerCode
             TransactionEntity customerResultEntity = transactionRepository.findByCustomerCode(customerCode);
             if (customerResultEntity != null

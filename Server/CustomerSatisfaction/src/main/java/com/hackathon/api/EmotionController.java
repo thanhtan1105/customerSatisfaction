@@ -49,7 +49,7 @@ public class EmotionController {
             String customerCode = customerValue.getKey();
             EmotionCustomerResponse emotionCustomer = transactionService.getEmotionCustomer(customerCode);
             //get url image
-            if (customerValue != null && customerValue.getValue() != null) {
+            if (emotionCustomer != null && customerValue != null && customerValue.getValue() != null) {
                 String url = customerValue.getValue();
                 byte[] data = Files.readAllBytes(Paths.get(url));
                 emotionCustomer.getMessages().setUrl(url);
