@@ -11,6 +11,7 @@ import com.hackathon.entity.TransactionEntity;
 import com.hackathon.model.*;
 import com.hackathon.modelMCS.EmotionRecognizeResponse;
 import com.hackathon.modelMCS.FaceDetectResponse;
+import com.hackathon.repository.CustomerRepository;
 import com.hackathon.repository.EmotionRepository;
 import com.hackathon.repository.TransactionRepository;
 import com.hackathon.util.JsonUtil;
@@ -48,6 +49,9 @@ public class TransactionService {
     private EmotionRepository emotionRepository;
 
     @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
     private DetectPersonService detectPersonService;
 
     public EmotionCustomerResponse getEmotionCustomer(String customerCode) {
@@ -58,7 +62,8 @@ public class TransactionService {
             TransactionEntity transactionEntity = transactionRepository.findByCustomerCode(customerCode);
             if (transactionEntity != null
                     && (transactionEntity.getStatus() == ETransaction.BEGIN
-                    || transactionEntity.getStatus() == ETransaction.PROCESS)) {
+                    || transactionEntity.getStatus() == ETransaction.PROCESS)
+                    &&(transactionEntity.getCustomer() != null)) {
                 Integer customerId = transactionEntity.getId();
                 EmotionCustomerEntity emotionCustomerEntity = emotionRepository.findByCustomerIdLeast(customerId);
                 if (emotionCustomerEntity != null) {
@@ -76,9 +81,9 @@ public class TransactionService {
                     CustomerEntity customerEntity = transactionEntity.getCustomer();
                     List<EmotionHistoryModel> historyModels = null;
                     List<TransactionEntity> transactions = customerEntity != null ? customerEntity.getTransactions() : null;
-                    if (transactions != null && transactions.size() >0) {
+                    if (transactions != null && transactions.size() > 0) {
                         transactions.sort((t, z) -> t.getBeginTime().compareTo(z.getBeginTime()));
-                        transactions.stream().forEach(t -> t.getEmotion().sort((a, b) ->a.getCreateTime().compareTo(b.getCreateTime())));
+                        transactions.stream().forEach(t -> t.getEmotion().sort((a, b) -> a.getCreateTime().compareTo(b.getCreateTime())));
                         historyModels = transactions.stream().map(EmotionHistoryModel::new).collect(Collectors.toList());
                     }
 
@@ -172,11 +177,13 @@ public class TransactionService {
                     if (transactionEntity.getCustomer() == null) {
                         CustomerModel customerModel = detectPersonService.detect(new ByteArrayInputStream(byteStream));
                         if (customerModel != null) {
+                            transactionEntity.setCustomer(customerRepository.findOne(customerModel.getId()));
+                            transactionRepository.saveAndFlush(transactionEntity);
                             detectPersonService.addFace(new ByteArrayInputStream(byteStream), customerCode);
                         } else {
                             detectPersonService.createTraining(new ByteArrayInputStream(byteStream), customerCode);
                         }
-                    }else{
+                    } else {
                         detectPersonService.addFace(new ByteArrayInputStream(byteStream), customerCode);
                     }
                 } else {

@@ -49,7 +49,7 @@ public class EmotionController {
             String customerCode = customerValue.getKey();
             EmotionCustomerResponse emotionCustomer = transactionService.getEmotionCustomer(customerCode);
             //get url image
-            if (customerValue.getValue() != null) {
+            if (customerValue != null && customerValue.getValue() != null) {
                 String url = customerValue.getValue();
                 byte[] data = Files.readAllBytes(Paths.get(url));
                 emotionCustomer.getMessages().setUrl(url);
@@ -93,6 +93,7 @@ public class EmotionController {
                 String fileName = I_URI.SESSION_API_EMOTION_CUSTOMER_CODE ;
                 String urlFile = StoreFileUtils.storeFile(fileName, new ByteArrayInputStream(byteImage));
                 customerValue.setValue(urlFile);
+                EmotionSession.setValue(I_URI.SESSION_API_EMOTION_CUSTOMER_CODE, customerValue);
                 return new BaseResponse(true, new Pair<>("uploadSuccess", result));
             } else {
                 return new BaseResponse(false);

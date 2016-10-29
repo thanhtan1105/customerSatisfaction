@@ -180,6 +180,7 @@ function worker_get_emotion() {
                             '</li>';
                     }
                 }
+                $history_customer_emotion.html(ul_content_history_emotion);
 
                 //stop request: get first emotion
                 clearTimeout(timer_get_emotion);
