@@ -127,5 +127,5 @@ public class EmotionAnalysisModel  implements Serializable {
         result = 31 * result + (smile != null ? smile.hashCode() : 0);
         result = 31 * result + (emotion != null ? emotion.hashCode() : 0);
         return result;
-    } {
+    }
 }
