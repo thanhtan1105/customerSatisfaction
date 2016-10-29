@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CustomerSatisfaction.iml" filepath="$PROJECT_DIR$/.idea/modules/CustomerSatisfaction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CustomerSatisfaction_main.iml" filepath="$PROJECT_DIR$/.idea/modules/CustomerSatisfaction_main.iml" group="CustomerSatisfaction" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CustomerSatisfaction_test.iml" filepath="$PROJECT_DIR$/.idea/modules/CustomerSatisfaction_test.iml" group="CustomerSatisfaction" />
+    </modules>
+  </component>
+</project>
