@@ -17,6 +17,9 @@
 		A68097461DC46AC8003702E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68097441DC46AC8003702E4 /* LaunchScreen.storyboard */; };
 		A68097511DC46AC8003702E4 /* CameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68097501DC46AC8003702E4 /* CameraTests.swift */; };
 		A680975C1DC46AC8003702E4 /* CameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680975B1DC46AC8003702E4 /* CameraUITests.swift */; };
+		A68097711DC46DD9003702E4 /* APIDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680976E1DC46DD9003702E4 /* APIDefine.swift */; };
+		A68097721DC46DD9003702E4 /* APIRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680976F1DC46DD9003702E4 /* APIRequestProtocol.swift */; };
+		A68097731DC46DD9003702E4 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68097701DC46DD9003702E4 /* APIRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		A68097571DC46AC8003702E4 /* CameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A680975B1DC46AC8003702E4 /* CameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUITests.swift; sourceTree = "<group>"; };
 		A680975D1DC46AC8003702E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A680976E1DC46DD9003702E4 /* APIDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDefine.swift; sourceTree = "<group>"; };
+		A680976F1DC46DD9003702E4 /* APIRequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestProtocol.swift; sourceTree = "<group>"; };
+		A68097701DC46DD9003702E4 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,10 @@
 		A680973A1DC46AC8003702E4 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				A680976C1DC46D3E003702E4 /* Service */,
+				A680976B1DC46D2F003702E4 /* AppDelegate */,
+				A680976A1DC46D28003702E4 /* Model */,
+				A68097691DC46D23003702E4 /* View */,
 				A680973B1DC46AC8003702E4 /* AppDelegate.swift */,
 				A680973D1DC46AC8003702E4 /* ViewController.swift */,
 				A680973F1DC46AC8003702E4 /* Main.storyboard */,
@@ -140,6 +150,45 @@
 				A680975D1DC46AC8003702E4 /* Info.plist */,
 			);
 			path = CameraUITests;
+			sourceTree = "<group>";
+		};
+		A68097691DC46D23003702E4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A680976A1DC46D28003702E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A680976B1DC46D2F003702E4 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		A680976C1DC46D3E003702E4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A680976D1DC46D45003702E4 /* Network */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		A680976D1DC46D45003702E4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A680976E1DC46DD9003702E4 /* APIDefine.swift */,
+				A680976F1DC46DD9003702E4 /* APIRequestProtocol.swift */,
+				A68097701DC46DD9003702E4 /* APIRequest.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 		D2855403C6DCB808E61661B9 /* Frameworks */ = {
@@ -443,7 +492,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68097721DC46DD9003702E4 /* APIRequestProtocol.swift in Sources */,
 				A680973E1DC46AC8003702E4 /* ViewController.swift in Sources */,
+				A68097711DC46DD9003702E4 /* APIDefine.swift in Sources */,
+				A68097731DC46DD9003702E4 /* APIRequest.swift in Sources */,
 				A680973C1DC46AC8003702E4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
