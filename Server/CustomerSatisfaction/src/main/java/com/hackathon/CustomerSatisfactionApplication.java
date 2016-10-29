@@ -8,5 +8,6 @@ public class CustomerSatisfactionApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CustomerSatisfactionApplication.class, args);
+		System.out.println("START COMPLETE!");
 	}
 }
